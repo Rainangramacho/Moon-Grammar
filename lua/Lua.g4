@@ -71,14 +71,14 @@ stat
     | 'do' block 'end'
     | 'while' exp 'do' block 'end'
     | 'repeat' block 'until' exp
-    | 'if' exp 'then' block ('elseif' exp 'then' block)* ('else' block)? 'end'
-    | 'switch' exp 'do' block 'end'
-    | 'when' exp 'do' block 'end'
+    | (exp NAME '=')? 'if' exp 'then' block ('elseif' exp 'then' block)* ('else' block)? 'end'
+    | (exp NAME '=')? 'switch' exp 'do' block 'end'
+    | (exp NAME '=')? 'when' exp 'do' block 'end'
     | 'for' NAME '=' exp ',' exp (',' exp)? 'do' block 'end'
     | 'for' namelist 'in' explist 'do' block 'end'
     | 'for' namelist 'of' explist 'do' block 'end'
     | 'foreach' namelist 'from' explist 'do' block 'end'
-    | 'try' 'do' block 'end' ('catch' exp 'do' block 'end')* ('finally' 'do' block 'end')?
+    | (exp NAME '=')? 'try' 'do' block 'end' ('catch' exp 'do' block 'end')* ('finally' 'do' block 'end')?
     | 'function' funcname funcbody
     | 'local' 'function' NAME funcbody
     | 'local' namelist ('=' explist)?
@@ -198,22 +198,22 @@ fieldsep
     ;
 
 operatorOr
-	: 'or';
+	: 'or' | '||';
 
 operatorAnd
-	: 'and';
+	: 'and' | '&&';
 
 operatorComparison
-	: '<' | '>' | '<=' | '>=' | '~=' | '==';
+	: '<' | '>' | '<=' | '>=' | '~=' | '==' | 'less' | 'higher' | 'equals' | 'eqless' | 'eqhigher' | 'diff';
 
 operatorStrcat
 	: '..';
 
 operatorAddSub
-	: '+' | '-';
+	: '+' | '-' | 'plus' | 'minus' ;
 
 operatorMulDivMod
-	: '*' | '/' | '%' | '//';
+	: '*' | '/' | '%' | '//' | 'divide' | 'multiply' | 'restdiv' ;
 
 operatorBitwise
 	: '&' | '|' | '~' | '<<' | '>>';
@@ -222,7 +222,7 @@ operatorUnary
     : 'not' | '#' | '-' | '~';
 
 operatorPower
-    : '^';
+    : '^' | 'potency';
 
 number
     : INT | HEX | FLOAT | HEX_FLOAT

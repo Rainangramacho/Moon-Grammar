@@ -79,13 +79,13 @@ stat
     | 'for' namelist 'of' explist 'do' block 'end'
     | 'foreach' namelist 'from' explist 'do' block 'end'
     | (exp NAME '=')? 'try' 'do' block 'end' ('catch' exp 'do' block 'end')* ('finally' 'do' block 'end')?
-    | 'function' funcname funcbody
+    | (exp NAME '=')? 'function' funcname funcbody
     | 'local' 'function' NAME funcbody
     | 'local' namelist ('=' explist)?
     ;
 
 retstat
-    : 'return' explist? ';'?
+    : 'return' explist? ';'? | 'back' explist? ';'?
     ;
 
 label
@@ -332,7 +332,9 @@ COMMENT
 
 LINE_COMMENT
     : '--'
-    (                                               // --
+    (                                                // --
+    | '//' 
+    | '!>'                                              
     | '[' '='*                                      // --[==
     | '[' '='* ~('='|'['|'\r'|'\n') ~('\r'|'\n')*   // --[==AA
     | ~('['|'\r'|'\n') ~('\r'|'\n')*                // --AAA

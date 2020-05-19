@@ -1,4 +1,4 @@
-number numero = if 1 == 1 
+local numero = if 1 == 1 
 then
   print('Foo');
 else

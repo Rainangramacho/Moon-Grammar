@@ -82,6 +82,7 @@ stat
     | (exp NAME '=')? 'function' funcname funcbody
     | 'local' 'function' NAME funcbody
     | 'local' namelist ('=' explist)?
+    | 'local' namelist ('=' stat)?
     ;
 
 retstat
@@ -333,8 +334,8 @@ COMMENT
 LINE_COMMENT
     : '--'
     (                                                // --
-    | '//' 
-    | '!>'                                              
+    | '//'
+    | '!>'
     | '[' '='*                                      // --[==
     | '[' '='* ~('='|'['|'\r'|'\n') ~('\r'|'\n')*   // --[==AA
     | ~('['|'\r'|'\n') ~('\r'|'\n')*                // --AAA

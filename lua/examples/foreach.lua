@@ -7,9 +7,13 @@
 --     myTable[key] = "foobar"
 -- end
 
-local idades = { John = 10, Alex = 32 }
+local idades = { Rainan = 22, Emanuel = 80 }
 
 foreach index, idade from pairs(idades) do
-    print("Name: ", index)
-    print("Age: ", idade)
+    print("Nome: ", index)
+    print("Idade: ", idade)
 end
+
+
+
+

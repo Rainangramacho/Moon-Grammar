@@ -10,3 +10,7 @@ number result = function fact (n)
   a = io.read("*number")        -- read a number
   print(fact(a))
 
+
+
+
+  

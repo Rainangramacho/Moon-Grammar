@@ -1,11 +1,20 @@
-local idades = { John = 10, Alex = 32 }
+local idades = { Rainan = 22, Emanuel = 80 }
 
 switch idades
 do
     case 10:
         print('10')
     case "a":
-        print('32')
+        print('80')
     default:
-        print('Condição padrão')
+        print('default')
 end
+
+
+
+
+
+
+
+
+
